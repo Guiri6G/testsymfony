@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+<h1> Modifier une Sous-sous famille </h1>
+
+{{ form_start(formSFamille) }}
+
+<div class="form-group">
+<label>Libelle : </label> {{ form_widget(formSFamille.libelle) }}   
+</div>
+<br>
+<div class="form-group">
+ <label>Sous-famille :</label>   {{ form_widget(formSFamille.idSousFamille) }}
+</div>
+<br>
+{{ form_end(formSFamille) }}
+{% endblock %}  

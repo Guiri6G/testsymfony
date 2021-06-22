@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .block label { display: inline-block; width: 160px; text-align: right; }
+     .ui-front {
+    z-index: 100;
+ }
+</style>
+<br>
+<center>
+    <h1>Recherche par sous-sous famille</h1>
+<div class="example-wrapper" style="margin-top: 5%;">
+
+    <div class="block">
+        <label>Sous-sous famille : </label>
+        <input type="text" name="sousSous" id="autocomplete" />
+    </div>
+    <div class="block">
+        <label>Sous-famille : </label>
+        <input type="text" name="sousF" id="sousF" readonly />
+    </div>
+    <div class="block">
+        <label>Famille :</label>
+        <input type="text" name="famille" id="famille" readonly />
+    </div>        
+</div>
+</center>
+{% endblock %}
+
+{% block javascripts %}
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<script>
+
+    $(function() {
+  $("input#autocomplete").on("keypress", function() {
+    $.ajax({
+      url:  "{{ path('search') }}",
+      type: "GET"
+    }).done(function(response) {
+        var result = [],
+        i, data = JSON.parse(response),
+        len = data.length;
+      for (i = 0; i < len; i++) {
+        result.push({
+          label: data[i].libelleS,
+          label2: data[i].libelleF,
+          label3 : data[i].libelleSF
+         
+        });
+      }
+      $("input#autocomplete").autocomplete({
+        source: result,
+        select: function(event, ui) {
+            console.log(ui.item.label);
+        $('#autocomplete').val(ui.item.label);
+        $('#sousF').val(ui.item.label3);
+        $('#famille').val(ui.item.label2);
+        }
+      });
+    });
+  });
+});
+
+</script>
+
+{% endblock %}

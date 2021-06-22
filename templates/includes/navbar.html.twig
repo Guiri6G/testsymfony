@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg bg-danger navbar-dark ">
+    <a class="navbar-brand" href="{{path('home')}}">SeMeubler</a>
+  <div class="container-fluid">
+    
+    <ul class="navbar-nav">
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdownMenuLink"
+          role="button"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Gestion Sous-sous famille
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li>
+            <a class="dropdown-item" href="{{path('voir_sousSous')}}">Gestion S-S Famille</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="{{path('create_sousSous')}}">Ajouter une S-S Famille</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="navbar-nav d-flex flex-row me-1">
+        <li class="nav-item me-3 me-lg-0">
+          <a class="nav-link" href="#"  style="color:white;"><i class="fas fa-user-alt"></i></a>
+        </li>
+      </ul>
+  </div>
+</nav>
+
